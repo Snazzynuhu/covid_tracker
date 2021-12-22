@@ -14,8 +14,36 @@ body {
 }
 
 .app__dropdown {
-  background-color: white;
+  background-color: rgb(222, 244, 251);
+  
 }
+
+.app__header-title{
+  position: relative;
+  border: 5px dotted salmon;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  animation: move 2s linear infinite;
+}
+
+@keyframes move{
+  0%{
+  border: 5px dashed red;
+  }
+  25%{
+  border: 5px dashed yellow;
+  }
+  50%{
+  border: 5px dashed green;
+  }
+  75%{
+  border: 5px dashed purple;
+  }
+  100%{
+  border: 5px dashed saddlebrown;
+  }
+} 
+
 
 .app__header {
   display: flex;

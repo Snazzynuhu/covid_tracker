@@ -26,11 +26,12 @@ const App = () => {
   const [mapZoom, setMapZoom] = useState(3);
 
   useEffect(() => {
-    fetch("https://disease.sh/v3/covid-19/all")
-      .then((response) => response.json())
-      .then((data) => {
-        setCountryInfo(data);
-      });
+    const getAllCountries = async()=>{
+      const res = await fetch("https://disease.sh/v3/covid-19/all");
+      const data = await res.json();
+      setCountryInfo(data);
+    }
+    getAllCountries();
   }, []);
 
   useEffect(() => {
@@ -51,8 +52,6 @@ const App = () => {
 
     getCountriesData();
   }, []);
-
-  console.log(casesType);
 
   const onCountryChange = async (e) => {
     const countryCode = e.target.value;
@@ -75,14 +74,14 @@ const App = () => {
     <div className="app">
       <div className="app__left">
         <div className="app__header">
-          <h1>COVID-19 Tracker</h1>
+          <h1  className="app__header-title">COVID-19 Tracker</h1>
           <FormControl className="app__dropdown">
             <Select
               variant="outlined"
-              value={country}
+              value={country} className="menu-item"
               onChange={onCountryChange}
             >
-              <MenuItem value="worldwide">Worldwide</MenuItem>
+              <MenuItem value="worldwide" >Worldwide</MenuItem>
               {countries.map((country) => (
                 <MenuItem value={country.value}>{country.name}</MenuItem>
               ))}
